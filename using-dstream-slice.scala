@@ -65,9 +65,10 @@ try {
     println(s"Retrieved ${sliceRDDs.size} RDDs (total ${totalRetrieved}) at ${toTime-startTime}ms (${(toTime-startTime)/batchInterval.milliseconds} batches) since start time.")
 
     //
-    // Sleep for a random amount of time up to 1.5 * the batch interval
+    // Sleep for a random amount of time up to 1.5 * the batch interval.
     // This is to emulate some operation that is longer than the batch interval,
-    // which will result in more than one RDD in one slice for demonstration.
+    // creating a situation where more than one RDD will be resulted in some
+    // slice, for demonstration.
     //
     val sleepMax = batchInterval.milliseconds + (batchInterval.milliseconds/2)
     val sleepTime = rand.nextInt % (sleepMax/2) + sleepMax/2
